@@ -15,6 +15,8 @@ RUN chmod +x /tini
 ADD Makefile /tmp/Makefile
 RUN mkdir /tmp/requirements
 ADD requirements/requirements_ansible.txt \
+    requirements/requirements_ansible-2.5.7.txt \
+    requirements/requirements_ansible-2.4.6.0.txt \
     requirements/requirements_ansible_uninstall.txt \
     requirements/requirements_ansible_git.txt \
     requirements/requirements.txt \
@@ -37,6 +39,8 @@ RUN yum -y install epel-release && \
     CFLAGS="-DXMLSEC_NO_SIZE_T" \
     VENV_BASE=/var/lib/awx/venv make requirements_ansible && \
     VENV_BASE=/var/lib/awx/venv make requirements_awx && \
+    VENV_BASE=/var/lib/awx/venv make requirements_ansible-2.5.7 && \
+    VENV_BASE=/var/lib/awx/venv make requirements_ansible-2.4.6.0 && \
     yum -y remove gcc postgresql-devel libxml2-devel libxslt-devel cyrus-sasl-devel openldap-devel xmlsec1-devel krb5-devel xmlsec1-openssl-devel libtool-ltdl-devel gcc-c++ python-devel && \
     yum -y clean all && \
     rm -rf /root/.cache

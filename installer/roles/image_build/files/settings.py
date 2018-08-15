@@ -108,3 +108,6 @@ CACHES = {
         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
     },
 }
+
+USE_X_FORWARDED_PORT = True
+USE_X_FORWARDED_HOST = True

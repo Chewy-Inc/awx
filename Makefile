@@ -164,6 +164,32 @@ requirements_ansible_dev:
 		$(VENV_BASE)/ansible/bin/pip install pytest mock; \
 	fi
 
+virtualenv_ansible-2.5.7:
+	if [ "$(VENV_BASE)" ]; then \
+		if [ ! -d "$(VENV_BASE)" ]; then \
+			mkdir $(VENV_BASE); \
+		fi; \
+		if [ ! -d "$(VENV_BASE)/ansible-2.5.7" ]; then \
+			virtualenv --system-site-packages $(VENV_BASE)/ansible-2.5.7; \
+		fi; \
+	fi
+
+requirements_ansible-2.5.7: virtualenv_ansible-2.5.7
+	$(VENV_BASE)/ansible-2.5.7/bin/pip install -r requirements/requirements_ansible-2.5.7.txt
+
+virtualenv_ansible-2.4.6.0:
+	if [ "$(VENV_BASE)" ]; then \
+		if [ ! -d "$(VENV_BASE)" ]; then \
+			mkdir $(VENV_BASE); \
+		fi; \
+		if [ ! -d "$(VENV_BASE)/ansible-2.4.6.0" ]; then \
+			virtualenv --system-site-packages $(VENV_BASE)/ansible-2.4.6.0; \
+		fi; \
+	fi
+
+requirements_ansible-2.4.6.0: virtualenv_ansible-2.4.6.0
+	$(VENV_BASE)/ansible-2.4.6.0/bin/pip install -r requirements/requirements_ansible-2.4.6.0.txt
+
 requirements_isolated:
 	if [ ! -d "$(VENV_BASE)/awx" ]; then \
 		virtualenv --system-site-packages $(VENV_BASE)/awx && \
